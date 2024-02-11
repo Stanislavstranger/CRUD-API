@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"target": "ES2018",
+		"module": "commonjs",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "Node",
+		"isolatedModules": true,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./",
+		"paths": {
+			"*": ["node_modules/*", "src/types/*"]
+		}
+	},
+	"include": ["**/*.ts", "webpack.config.ts"],
+	"exclude": ["node_modules"]
+}
