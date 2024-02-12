@@ -8,7 +8,17 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js']
+		extensions: ['.ts', '.tsx', '.js'],
+		fallback: {
+			path: require.resolve('path-browserify'),
+			os: require.resolve('os-browserify/browser'),
+			crypto: require.resolve('crypto-browserify'),
+			http: require.resolve('stream-http'),
+			url: require.resolve('url/'),
+			buffer: require.resolve('buffer/'),
+			stream: require.resolve('stream-browserify'),
+			util: require.resolve('util/')
+		}
 	},
 	module: {
 		rules: [
