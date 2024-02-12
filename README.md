@@ -42,11 +42,11 @@ npm run start:prod
 
 ### Once the application is running, you can use the following endpoints:
 
-  - `GET /api/users` - get all users
-  - `GET /api/users/{userId}` - get the user by id (ex. “/users/123”)
-  - `POST /api/users` - create a new user
-  - `PUT /api/users/{userId}` - update user by id (ex. “/users/123”)
-  - `DELETE /api/users/{userId}` - delete user by id (ex. “/users/123”)
+- `GET /api/users` - get all users
+- `GET /api/users/{userId}` - get the user by id (ex. “/users/123”)
+- `POST /api/users` - create a new user
+- `PUT /api/users/{userId}` - update user by id (ex. “/users/123”)
+- `DELETE /api/users/{userId}` - delete user by id (ex. “/users/123”)
 
 ## Testing the API
 
