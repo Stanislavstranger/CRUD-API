@@ -7,7 +7,7 @@ export interface User {
   hobbies: string[];
 }
 
-export function createUser(username: string, age: number, hobbies: string[]): User {
+export function createUserData(username: string, age: number, hobbies: string[]): User {
   return {
     id: uuidv4(),
     username,
