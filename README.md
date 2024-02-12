@@ -8,7 +8,7 @@
 git clone https://github.com/Stanislavstranger/CRUD-API.git
 ```
 
-### Clone the repository:
+### Navigate to the project directory:
 
 ```bash
 cd CRUD-API
