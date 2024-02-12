@@ -8,7 +8,11 @@ import {
 	deleteUserById
 } from '../../service/userService';
 
-const sendResponse = (res: ServerResponse, statusCode: number, data: User[] | User | object) => {
+export const sendResponse = (
+	res: ServerResponse,
+	statusCode: number,
+	data: User[] | User | object
+) => {
 	res.writeHead(statusCode, { 'Content-Type': 'application/json' });
 	res.end(JSON.stringify(data));
 };
@@ -44,8 +48,23 @@ export const handleCreateUser = async (
 	res: ServerResponse,
 	userData: User
 ) => {
+	if (
+		!userData.username ||
+		typeof userData.username !== 'string' ||
+		!userData.age ||
+		typeof userData.age !== 'number' ||
+		!userData.hobbies ||
+		!Array.isArray(userData.hobbies)
+	) {
+		sendResponse(res, 404, {
+			message:
+				'The request body does not contain required fields or the data was entered incorrectly'
+		});
+		return;
+	}
 	try {
 		const newUser = await createUser(userData);
+
 		sendResponse(res, 201, newUser);
 	} catch (error) {
 		sendResponse(res, 400, { message: 'Bad Request' });
@@ -81,7 +100,7 @@ export const handleDeleteUser = async (
 			sendResponse(res, 404, { message: 'User not found' });
 			return;
 		}
-		sendResponse(res, 204, {});
+		sendResponse(res, 204, { message: 'User deleted successfully' });
 	} catch (error) {
 		sendResponse(res, 400, { message: 'Bad Request' });
 	}
