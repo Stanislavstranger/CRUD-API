@@ -19,6 +19,7 @@
 		"@types/webpack": "^5.28.5",
 		"@typescript-eslint/eslint-plugin": "^6.21.0",
 		"@typescript-eslint/parser": "^6.21.0",
+		"colors": "^1.4.0",
 		"eslint": "^8.56.0",
 		"nodemon": "^3.0.3",
 		"prettier": "^3.2.5",
