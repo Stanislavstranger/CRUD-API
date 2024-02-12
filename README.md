@@ -48,6 +48,10 @@ npm run start:prod
 - `PUT /api/users/{userId}` - update user by id (ex. “/users/123”)
 - `DELETE /api/users/{userId}` - delete user by id (ex. “/users/123”)
 
+### Example of work:
+
+![bandicam 2024-02-13 01-04-12-046](https://github.com/Stanislavstranger/CRUD-API/assets/119806888/1dd6ef20-aff9-4a29-a5fd-4654793dcc00)
+
 ## Testing the API
 
 ### You can test the API using tools like Postman or by automated tests.
