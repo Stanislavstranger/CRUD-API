@@ -1,19 +1,7 @@
-import { User, createUserData } from '../models/user';
+import { v4 as uuidv4 } from 'uuid';
+import { User } from '../models/user';
 
-let users: User[] = [
-	{
-		id: '1',
-		username: 'Stas',
-		age: 36,
-		hobbies: []
-	},
-	{
-		id: '2',
-		username: 'Alina',
-		age: 33,
-		hobbies: []
-	}
-];
+let users: User[] = [];
 
 export const getUsers = async (): Promise<User[]> => {
 	return users;
@@ -24,7 +12,7 @@ export const getUserById = async (userId: string): Promise<User | undefined> => 
 };
 
 export const createUser = async (userData: User): Promise<User> => {
-	const newUser = createUserData(userData.username, userData.age, userData.hobbies);
+	const newUser = { ...userData, id: uuidv4() };
 	users.push(newUser);
 	return newUser;
 };

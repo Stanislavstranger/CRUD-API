@@ -4,14 +4,15 @@ import { createServer } from 'http';
 import { parse } from 'url';
 import {
 	handleCreateUser,
+	handleDeleteUser,
 	handleGetUserById,
-	handleGetUsers
+	handleGetUsers,
+	handleUpdateUser
 } from './src/controllers/userController/userController';
 
 const server = createServer((req, res) => {
 	const url = parse(req.url as string, true);
 	const { pathname, query } = url;
-	console.log(url);
 
 	if (pathname === '/api/users' && req.method === 'GET') {
 		handleGetUsers(req, res);
@@ -21,9 +22,31 @@ const server = createServer((req, res) => {
 			data += chunk;
 		});
 		req.on('end', () => {
-			const userData = JSON.parse(data);
-			handleCreateUser(req, res, userData);
+			try {
+				const userData = JSON.parse(data);
+				handleCreateUser(req, res, userData);
+			} catch (error) {
+				res.writeHead(400, { 'Content-Type': 'application/json' });
+				res.end(JSON.stringify({ message: 'Bad Request' }));
+			}
 		});
+	} else if (pathname === '/api/users' && req.method === 'PUT') {
+		let data = '';
+		req.on('data', (chunk) => {
+			data += chunk;
+		});
+		req.on('end', () => {
+			try {
+				const userData = JSON.parse(data);
+				handleUpdateUser(req, res, query.userId as string, userData);
+			} catch (error) {
+				res.writeHead(400, { 'Content-Type': 'application/json' });
+				res.end(JSON.stringify({ message: 'Bad Request' }));
+			}
+		});
+	} else if (pathname === '/api/users' && req.method === 'DELETE') {
+		handleDeleteUser(req, res, query.userId as string);
+		// eslint-disable-next-line no-dupe-else-if
 	} else if (pathname === '/api/users' && req.method === 'GET' && query.userId) {
 		handleGetUserById(req, res, query.userId as string);
 	} else {
